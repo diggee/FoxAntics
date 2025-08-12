@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://do8c82b31fixn"]
+
+[ext_resource type="PackedScene" uid="uid://l1wtjjbeuvao" path="res://scenes/bullet.tscn" id="1_4g3gs"]
+[ext_resource type="Texture2D" uid="uid://dpxycvuvok5ob" path="res://assets/items/bullet1.png" id="2_46jqs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0cue5"]
+radius = 9.0
+
+[node name="PlayerBullet" instance=ExtResource("1_4g3gs")]
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_46jqs")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_0cue5")

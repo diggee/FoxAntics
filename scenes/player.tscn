@@ -1,8 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://doiya43d8jc6y"]
+[gd_scene load_steps=30 format=3 uid="uid://doiya43d8jc6y"]
 
 [ext_resource type="Texture2D" uid="uid://tbhpccf3o28i" path="res://assets/player/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://nadrnujqab47" path="res://scenes/player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://bka3xdy11who2" path="res://scenes/player_camera.tscn" id="3_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://bvjaiyph2k841" path="res://scenes/shooter.tscn" id="4_dqkch"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vyb7"]
 radius = 7.0
@@ -190,6 +191,10 @@ states/Start/position = Vector2(276, 199)
 transitions = ["Start", "Grounded", SubResource("AnimationNodeStateMachineTransition_qhqgy"), "Grounded", "InAir", SubResource("AnimationNodeStateMachineTransition_dqkch"), "InAir", "Grounded", SubResource("AnimationNodeStateMachineTransition_fjrip")]
 graph_offset = Vector2(3.39033, 2.26755)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhqgy"]
+radius = 7.0
+height = 18.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_g2els")
@@ -226,3 +231,16 @@ theme_override_font_sizes/font_size = 64
 text = "aaaa
 aaaa
 aaaa"
+
+[node name="Hurtbox" type="Area2D" parent="."]
+position = Vector2(0, 3)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape2D_qhqgy")
+debug_color = Color(0.935223, 0.242347, 0.207032, 0.42)
+
+[node name="Shooter" parent="." instance=ExtResource("4_dqkch")]
+speed = 100.0
+shoot_delay = 1.0

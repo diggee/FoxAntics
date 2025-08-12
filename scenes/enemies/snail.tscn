@@ -1,0 +1,131 @@
+[gd_scene load_steps=19 format=3 uid="uid://dlx32a5v6deuy"]
+
+[ext_resource type="PackedScene" uid="uid://x0dcntifo4l3" path="res://scenes/enemies/enemy_base.tscn" id="1_8d0rg"]
+[ext_resource type="Script" uid="uid://q4sehe3k7skr" path="res://scenes/enemies/snail.gd" id="2_3pso2"]
+[ext_resource type="Texture2D" uid="uid://brdn710jobcyb" path="res://assets/enemies/snail/snail.png" id="2_komfo"]
+[ext_resource type="PackedScene" uid="uid://dr7qyx146w5xk" path="res://scenes/life_timer.tscn" id="4_ju45m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pso2"]
+atlas = ExtResource("2_komfo")
+region = Rect2(0, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ju45m"]
+atlas = ExtResource("2_komfo")
+region = Rect2(38, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8w0s"]
+atlas = ExtResource("2_komfo")
+region = Rect2(76, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_duwbg"]
+atlas = ExtResource("2_komfo")
+region = Rect2(114, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nube2"]
+atlas = ExtResource("2_komfo")
+region = Rect2(152, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tybpi"]
+atlas = ExtResource("2_komfo")
+region = Rect2(190, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cecnm"]
+atlas = ExtResource("2_komfo")
+region = Rect2(228, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swcmx"]
+atlas = ExtResource("2_komfo")
+region = Rect2(266, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sk2vh"]
+atlas = ExtResource("2_komfo")
+region = Rect2(304, 0, 38, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yf3i"]
+atlas = ExtResource("2_komfo")
+region = Rect2(342, 0, 38, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ixpr5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pso2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ju45m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8w0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_duwbg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nube2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tybpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cecnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swcmx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sk2vh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4yf3i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3pso2"]
+size = Vector2(29, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_komfo"]
+size = Vector2(30, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ju45m"]
+size = Vector2(34, 22)
+
+[node name="Snail" instance=ExtResource("1_8d0rg")]
+script = ExtResource("2_3pso2")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_ixpr5")
+autoplay = "default"
+frame_progress = 0.551388
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_3pso2")
+
+[node name="Hitbox" parent="." index="2"]
+position = Vector2(0, -12)
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_komfo")
+debug_color = Color(0.86874, 0.347184, 0.15682, 0.42)
+
+[node name="Hurtbox" parent="." index="3"]
+position = Vector2(0, -10)
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_ju45m")
+debug_color = Color(0.291881, 0.605966, 0.487774, 0.42)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
+position = Vector2(0, -6)
+scale = Vector2(1, 0.6)
+
+[node name="RayCast2D" type="RayCast2D" parent="." index="5"]
+position = Vector2(-33, 0)
+
+[node name="LifeTimer" parent="." index="6" instance=ExtResource("4_ju45m")]

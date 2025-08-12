@@ -4,12 +4,17 @@ class_name player
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var debug_label: Label = $DebugLabel
+@onready var shooter: Shooter = $Shooter
 
 const GRAVITY: float = 690.0
 const JUMP_SPEED: float = -270.0
 const RUN_SPEED: float = 100.0
 const MAX_FALL_VELOCITY: float = 350.0
 
+func _enter_tree() -> void:
+	add_to_group(Constants.PLAYER_GROUP)
+	
+	
 func _ready() -> void:
 	update_debug_label()
 	
@@ -30,6 +35,9 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if is_on_floor() and event.is_action_pressed("jump"):
 		velocity.y += JUMP_SPEED
+	if event.is_action_pressed("shoot"):
+		var direction: Vector2 = Vector2.LEFT if sprite_2d.flip_h else Vector2.RIGHT
+		shooter.shoot(direction)
 		
 		
 func update_debug_label():

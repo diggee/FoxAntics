@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=3 uid="uid://dtrgaeaxjbkk6"]
+
+[ext_resource type="PackedScene" uid="uid://x0dcntifo4l3" path="res://scenes/enemies/enemy_base.tscn" id="1_4g1ll"]
+[ext_resource type="Texture2D" uid="uid://bkb3yhxoy2y0j" path="res://assets/enemies/eagle/eagle-attack.png" id="2_elkqi"]
+[ext_resource type="Script" uid="uid://dtbhumt1qgsvf" path="res://scenes/enemies/eagle.gd" id="2_v7hxp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7hxp"]
+atlas = ExtResource("2_elkqi")
+region = Rect2(0, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_031ds"]
+atlas = ExtResource("2_elkqi")
+region = Rect2(40, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8d2wr"]
+atlas = ExtResource("2_elkqi")
+region = Rect2(80, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gv4lw"]
+atlas = ExtResource("2_elkqi")
+region = Rect2(120, 0, 40, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bf3tn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7hxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_031ds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8d2wr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gv4lw")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_elkqi"]
+radius = 14.1421
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v7hxp"]
+radius = 16.1245
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_031ds"]
+radius = 16.0
+
+[node name="Eagle" instance=ExtResource("1_4g1ll")]
+script = ExtResource("2_v7hxp")
+fly_speed = Vector2(35, 15)
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_bf3tn")
+animation = &"fly"
+autoplay = "fly"
+frame_progress = 0.399699
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = false
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_elkqi")
+
+[node name="Hitbox" parent="." index="2"]
+visible = false
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_v7hxp")
+debug_color = Color(0.827704, 0.370539, 0.375999, 0.42)
+
+[node name="Hurtbox" parent="." index="3"]
+visible = false
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_031ds")
+debug_color = Color(0.330548, 0.611295, 0.352524, 0.42)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
+position = Vector2(0, 3)
+
+[node name="PlayerDetector" type="RayCast2D" parent="." index="5"]
+target_position = Vector2(0, 300)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="DirectionTimer" type="Timer" parent="." index="6"]
+wait_time = 3.0
+one_shot = true
+autostart = true
