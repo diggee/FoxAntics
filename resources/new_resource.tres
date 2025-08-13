@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Stats" load_steps=2 format=3 uid="uid://cqrmc4f3gmmr5"]
+
+[ext_resource type="Script" uid="uid://dt2tpl8r8404r" path="res://resources/stats.gd" id="1_6p7ku"]
+
+[resource]
+resource_name = "slime"
+script = ExtResource("1_6p7ku")
+max_health = 200
+max_stamina = 50
+poise = 10
+resistance_bleed = 1.41
+resistance_poison = 1.725
+resistance_fire = 1.565
+resistance_frost = 123.0
+attack = 10
+critical_attack = 20
+metadata/_custom_type_script = "uid://dt2tpl8r8404r"

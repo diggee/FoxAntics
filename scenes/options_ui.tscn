@@ -1,0 +1,97 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjtpjojovh53l"]
+
+[ext_resource type="Script" uid="uid://csmwwaad3ahbl" path="res://scenes/content_panel.gd" id="1_k3vpy"]
+
+[node name="OptionsUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Split" type="HSplitContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+split_offset = 400
+
+[node name="NavPanel" type="VBoxContainer" parent="Split"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BtnAudio" type="Button" parent="Split/NavPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Audio"
+
+[node name="BtnControls" type="Button" parent="Split/NavPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Controls"
+
+[node name="BtnCredits" type="Button" parent="Split/NavPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Credits"
+
+[node name="ContentPanel" type="TabContainer" parent="Split"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+current_tab = 0
+script = ExtResource("1_k3vpy")
+
+[node name="VideoTab" type="Control" parent="Split/ContentPanel"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Label" type="Label" parent="Split/ContentPanel/VideoTab"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Video Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioTab" type="Control" parent="Split/ContentPanel"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Label" type="Label" parent="Split/ContentPanel/AudioTab"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Audio Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ControlsTab" type="Control" parent="Split/ContentPanel"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Label" type="Label" parent="Split/ContentPanel/ControlsTab"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Control Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreditsTab" type="Control" parent="Split/ContentPanel"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="Label" type="Label" parent="Split/ContentPanel/CreditsTab"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Split/NavPanel/BtnAudio" to="Split/ContentPanel" method="_on_audio_pressed"]
+[connection signal="pressed" from="Split/NavPanel/BtnControls" to="Split/ContentPanel" method="_on_controls_pressed"]
+[connection signal="pressed" from="Split/NavPanel/BtnCredits" to="Split/ContentPanel" method="_on_credits_pressed"]

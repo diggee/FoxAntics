@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs30j1xgnsug0"]
+
+[ext_resource type="Script" uid="uid://iocoijx1ytoc" path="res://resources/character_base.gd" id="1_k4d0q"]
+
+[node name="CharacterBase" type="CharacterBody2D"]
+script = ExtResource("1_k4d0q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
